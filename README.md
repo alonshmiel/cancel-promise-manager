@@ -31,7 +31,7 @@ const cpm = new CancelPromiseManager({
 });
 
 const p = await cpm.addPromise({
-      promiseFunc: () => { your async function },
+      promiseFunc: () => { // your async function },
       onCancel: (resolvedData) => { // you can cancel by your resolved data }
 });
 
