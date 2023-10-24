@@ -18,6 +18,13 @@ npm install cancel-promise-manager
 ```
 ## Usage
 
+Before:
+```
+const p1 = await myAsyncPromise();
+const p2 = await myAsyncPromise();
+```
+
+After:
 ```
 import { CancelPromiseManager, CancelPromiseManagerEnum } from "cancel-promise-manager";
 
@@ -30,14 +37,18 @@ const cpm = new CancelPromiseManager({
     onCancelAllPromises,
 });
 
-const p = await cpm.addPromise({
-      promiseFunc: () => { // your async function },
+const p1 = await cpm.addPromise({
+      promiseFunc: () => myAsyncPromise(),
       onCancel: (resolvedData) => { // you can cancel by your resolved data }
 });
-
-if (p === CancelPromiseManagerEnum.STATE.CANCELED) {
+if (p1 === CancelPromiseManagerEnum.STATE.CANCELED) {
   // do something
 }
+
+const p2 = await cpm.addPromise({
+      promiseFunc: () => myAsyncPromise(),
+      onCancel: (resolvedData) => { // you can cancel by your resolved data }
+});
 ```
 
 ## Documentation
